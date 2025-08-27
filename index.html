@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>BlogSphere - Your Source for Insights</title>
+    <meta name="robots" content="index, follow" />
+    <script src="https://cdn.tailwindcss.com"></script>
+  </head>
+  <body class="bg-gray-50 font-sans">
+    <!-- Navbar -->
+    <nav class="bg-white shadow-lg fixed w-full z-10">
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="flex justify-between h-16">
+          <div class="flex items-center">
+            <h1 class="text-2xl font-bold text-blue-600">BlogSphere</h1>
+          </div>
+          <div class="flex items-center space-x-4">
+            <a
+              href="#home"
+              class="text-gray-600 hover:text-blue-600 px-3 py-2 rounded-md"
+              >Home</a
+            >
+            <a
+              href="#blog"
+              class="text-gray-600 hover:text-blue-600 px-3 py-2 rounded-md"
+              >Blog</a
+            >
+            <a
+              href="#about"
+              class="text-gray-600 hover:text-blue-600 px-3 py-2 rounded-md"
+              >About</a
+            >
+          </div>
+        </div>
+      </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section
+      id="home"
+      class="pt-16 pb-12 flex items-center justify-center bg-gradient-to-r from-blue-500 to-teal-500"
+    >
+      <div class="text-center text-white px-4">
+        <h2 class="text-3xl md:text-4xl font-extrabold mb-4">
+          Welcome to BlogSphere
+        </h2>
+        <p class="text-base md:text-lg mb-6">
+          Discover insightful articles and stories that inspire and inform.
+        </p>
+        <a
+          href="#blog"
+          class="bg-white text-blue-600 px-6 py-3 rounded-full font-semibold hover:bg-blue-100 transition"
+          >Explore Blogs</a
+        >
+      </div>
+    </section>
+
+    <!-- Blog Section -->
+    <section id="blog" class="py-20 bg-white">
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <h2 class="text-3xl font-bold text-gray-800 text-center mb-8">
+          Latest Posts
+        </h2>
+        <div
+          id="blog-posts"
+          class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6"
+        >
+          <!-- Blog posts will be dynamically inserted here -->
+        </div>
+        <div class="text-center mt-8">
+          <button
+            id="load-more"
+            class="bg-blue-600 text-white px-6 py-3 rounded-full font-semibold hover:bg-blue-700 transition"
+          >
+            Load More
+          </button>
+        </div>
+      </div>
+    </section>
+
+    <!-- About Section -->
+    <section id="about" class="py-20 bg-gray-50">
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <h2 class="text-3xl font-bold text-gray-800 text-center mb-8">
+          About BlogSphere
+        </h2>
+        <p class="text-lg text-gray-600 text-center max-w-3xl mx-auto">
+          BlogSphere is your go-to platform for thought-provoking content,
+          covering technology, lifestyle, and more. Join our community of
+          readers and writers!
+        </p>
+      </div>
+    </section>
+
+    <!-- JavaScript -->
+    <script>
+      const blogPosts = [
+        {
+          title: "Webbesucher für Webseite Schweiz",
+          excerpt:
+            "Wie die Webseite mehr Webtraffic- Webbesucher bekommt. Wie bekommt meine Websites mehr Webtraffic? Wie kann man mehr Traffic auf der Website generieren? Lesen Sie hier wie man den Webtraffic der monatliche Besucher ersichtlich erhöhen kann.",
+          url: "/webbesucher-fur-webseite-schweiz.html",
+        },
+      ];
+
+      const postsContainer = document.getElementById("blog-posts");
+      const loadMoreBtn = document.getElementById("load-more");
+      let displayedPosts = 3;
+
+      function renderPosts() {
+        postsContainer.innerHTML = blogPosts
+          .slice(0, displayedPosts)
+          .map(
+            (post) => `
+                <div class="bg-gray-50 p-6 rounded-lg shadow-md hover:shadow-lg transition">
+                    <h3 class="text-xl font-semibold text-gray-800 mb-2">${post.title}</h3>
+                    <p class="text-gray-600 mb-4">${post.excerpt}</p>
+                    <a href="${post.url}" class="text-blue-600 hover:underline mt-4 inline-block">Read More</a>
+                </div>
+            `
+          )
+          .join("");
+        loadMoreBtn.style.display =
+          displayedPosts >= blogPosts.length ? "none" : "block";
+      }
+
+      loadMoreBtn.addEventListener("click", () => {
+        displayedPosts += 3;
+        renderPosts();
+      });
+
+      // Initial render
+      renderPosts();
+    </script>
+  </body>
+</html>
